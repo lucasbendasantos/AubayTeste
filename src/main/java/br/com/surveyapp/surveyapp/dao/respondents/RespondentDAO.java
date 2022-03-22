@@ -1,6 +1,7 @@
 package br.com.surveyapp.surveyapp.dao.respondents;
 
 import br.com.surveyapp.surveyapp.dao.survey.SurveyDAO;
+import br.com.surveyapp.surveyapp.model.Respondent;
 import org.springframework.data.annotation.Id;
 
 import java.util.Set;
@@ -54,5 +55,16 @@ public class RespondentDAO {
 
   public void setSurveysAnswered(Set<SurveyDAO> surveysAnswered) {
     this.surveysAnswered = surveysAnswered;
+  }
+
+  public Respondent getRespondentDto(){
+    Respondent respondent = new Respondent();
+
+    respondent.setId(this.id);
+    respondent.setName(this.name);
+    respondent.setDocument(this.document);
+    respondent.setEmail(this.email);
+
+    return respondent;
   }
 }

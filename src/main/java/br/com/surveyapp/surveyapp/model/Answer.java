@@ -1,8 +1,8 @@
-package br.com.surveyapp.surveyapp.dao.survey;
+package br.com.surveyapp.surveyapp.model;
 
-import br.com.surveyapp.surveyapp.model.Answer;
+import br.com.surveyapp.surveyapp.dao.survey.AnswerDAO;
 
-public class AnswerDAO {
+public class Answer {
 
   private char option;
   private String description;
@@ -32,12 +32,12 @@ public class AnswerDAO {
     this.checked = checked;
   }
 
-  public Answer getAnswerDTO(){
-    Answer answer = new Answer();
-    answer.setOption(this.option);
-    answer.setDescription(this.description);
-    answer.setChecked(this.checked);
-    return answer;
-  }
+  public AnswerDAO getAnswerDAO(){
+    AnswerDAO answerDAO = new AnswerDAO();
+    answerDAO.setOption(this.option);
+    answerDAO.setDescription(this.description);
+    answerDAO.setChecked(this.checked);
 
+    return answerDAO;
+  }
 }

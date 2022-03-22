@@ -1,5 +1,9 @@
 package br.com.surveyapp.surveyapp.dao.survey;
 
+import br.com.surveyapp.surveyapp.model.Answer;
+import br.com.surveyapp.surveyapp.model.Question;
+
+import java.util.HashSet;
 import java.util.Set;
 
 public class QuestionDAO {
@@ -39,5 +43,20 @@ public class QuestionDAO {
 
   public void setAnswers(Set<AnswerDAO> answers) {
     this.answers = answers;
+  }
+
+  public Question getQuestionDTO(){
+    Question question = new Question();
+    Set<Answer> listAnswer = new HashSet<>();
+
+    question.setNumberQuestion(this.numberQuestion);
+    question.setDescription(this.description);
+    question.setMultipleChoice(this.multipleChoice);
+
+    this.answers.stream().forEach(item -> listAnswer.add(item.getAnswerDTO()));
+    question.setAnswers(listAnswer);
+
+    return question;
+
   }
 }
