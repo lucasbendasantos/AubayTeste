@@ -64,7 +64,7 @@ public class RespondentDAO {
     this.surveysAnswered = surveysAnswered;
   }
 
-  public Respondent _getRespondentDto(){
+  public Respondent _getRespondentDto() {
     Respondent respondent = new Respondent();
     Set<Survey> surveys = new HashSet<>();
 
@@ -73,9 +73,10 @@ public class RespondentDAO {
     respondent.setDocument(this.document);
     respondent.setEmail(this.email);
 
-    this.surveysAnswered.stream().forEach(item -> surveys.add(item._getSurveyDTO()));
-    respondent.setSurveysAnswered(surveys);
-
+    if (this.surveysAnswered != null) {
+      this.surveysAnswered.stream().forEach(item -> surveys.add(item._getSurveyDTO()));
+      respondent.setSurveysAnswered(surveys);
+    }
     return respondent;
   }
 }
