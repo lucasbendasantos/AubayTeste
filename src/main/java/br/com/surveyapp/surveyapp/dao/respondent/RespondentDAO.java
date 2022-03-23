@@ -63,7 +63,7 @@ public class RespondentDAO {
     this.surveysAnswered = surveysAnswered;
   }
 
-  public Respondent getRespondentDto(){
+  public Respondent _getRespondentDto(){
     Respondent respondent = new Respondent();
 
     respondent.setId(this.id);

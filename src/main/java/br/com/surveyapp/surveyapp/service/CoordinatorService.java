@@ -16,11 +16,11 @@ public class CoordinatorService {
   private CoordinatorRepository repository;
 
   public Coordinator insert(Coordinator coordinator){
-    return repository.save(coordinator.getCoodinatorEntity()).getCoodinatorDTO();
+    return repository.save(coordinator._getCoodinatorEntity())._getCoodinatorDTO();
   }
 
   public Coordinator update (Coordinator coordinator){
-    return repository.insert(coordinator.getCoodinatorEntity()).getCoodinatorDTO();
+    return repository.insert(coordinator._getCoodinatorEntity())._getCoodinatorDTO();
   }
 
   public Coordinator findByDocument(String document){
@@ -31,7 +31,7 @@ public class CoordinatorService {
     List<CoordinatorDAO> listDAO = repository.findAll();
     List<Coordinator> list = new ArrayList<>();
 
-    listDAO.stream().forEach(item -> list.add(item.getCoodinatorDTO()));
+    listDAO.stream().forEach(item -> list.add(item._getCoodinatorDTO()));
 
     return list;
 

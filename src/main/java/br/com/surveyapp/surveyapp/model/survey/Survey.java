@@ -55,14 +55,14 @@ public class Survey {
     this.questions = questions;
   }
 
-  public SurveyDAO getSurveyDAO(){
+  public SurveyDAO _getSurveyDAO(){
     SurveyDAO surveyDAO = new SurveyDAO();
     Set<QuestionDAO> listQuestionDAO = new HashSet<>();
 
     surveyDAO.setId(this.getId());
     surveyDAO.setTitle(this.title);
     surveyDAO.setStatus(this.status);
-    surveyDAO.setCoordinator(this.coordinator.getCoodinatorEntity());
+    surveyDAO.setCoordinator(this.coordinator._getCoodinatorEntity());
 
     this.questions.stream().forEach(item -> listQuestionDAO.add(item.getQuestionDAO()));
 

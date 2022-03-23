@@ -16,22 +16,22 @@ public class RespondentService {
   private RespondentRepository repository;
 
   public Respondent insert(Respondent respondent) {
-    return repository.save(respondent.getRespodentEntity()).getRespondentDto();
+    return repository.save(respondent._getRespodentEntity())._getRespondentDto();
   }
 
   public Respondent update(Respondent respondent) {
-    return repository.insert((respondent.getRespodentEntity())).getRespondentDto();
+    return repository.insert((respondent._getRespodentEntity()))._getRespondentDto();
   }
 
   public Respondent findByDocument(String document) {
-    return repository.findByDocument(document).getRespondentDto();
+    return repository.findByDocument(document)._getRespondentDto();
   }
 
   public List<Respondent> listAll(){
     List<RespondentDAO> listDAO = repository.findAll();
     List<Respondent> list = new ArrayList<>();
 
-    listDAO.stream().forEach(item -> list.add(item.getRespondentDto()));
+    listDAO.stream().forEach(item -> list.add(item._getRespondentDto()));
 
     return list;
   }

@@ -41,7 +41,7 @@ public class Coordinator {
     this.email = email;
   }
 
-  public CoordinatorDAO getCoodinatorEntity(){
+  public CoordinatorDAO _getCoodinatorEntity(){
     CoordinatorDAO coordinatorDAO = new CoordinatorDAO();
 
     coordinatorDAO.setId(this.getId());

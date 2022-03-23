@@ -41,7 +41,7 @@ public class Respondent {
     this.email = email;
   }
 
-  public RespondentDAO getRespodentEntity(){
+  public RespondentDAO _getRespodentEntity(){
     RespondentDAO respondentDAO = new RespondentDAO();
 
     respondentDAO.setId(this.getId());

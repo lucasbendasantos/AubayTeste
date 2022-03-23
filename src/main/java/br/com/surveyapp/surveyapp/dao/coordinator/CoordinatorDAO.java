@@ -50,7 +50,7 @@ public class CoordinatorDAO {
     this.email = email;
   }
 
-  public Coordinator getCoodinatorDTO(){
+  public Coordinator _getCoodinatorDTO(){
     Coordinator coordinator = new Coordinator();
 
     coordinator.setId(this.getId());

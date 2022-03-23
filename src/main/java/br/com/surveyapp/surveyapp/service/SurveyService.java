@@ -16,18 +16,18 @@ public class SurveyService {
   SurveyRepository repository;
 
   public Survey insert(Survey survey) {
-    return repository.save(survey.getSurveyDAO()).getSurveyDTO();
+    return repository.save(survey._getSurveyDAO())._getSurveyDTO();
   }
 
   public Survey update(Survey survey) {
-    return repository.insert(survey.getSurveyDAO()).getSurveyDTO();
+    return repository.insert(survey._getSurveyDAO())._getSurveyDTO();
   }
 
   public List<Survey> listAll(){
     List<SurveyDAO> listDAO = repository.findAll();
     List<Survey> listDTO = new ArrayList<>();
 
-    listDAO.stream().forEach(item -> listDTO.add(item.getSurveyDTO()));
+    listDAO.stream().forEach(item -> listDTO.add(item._getSurveyDTO()));
 
     return listDTO;
   }
