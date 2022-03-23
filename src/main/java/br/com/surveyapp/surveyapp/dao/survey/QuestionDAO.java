@@ -45,7 +45,7 @@ public class QuestionDAO {
     this.answers = answers;
   }
 
-  public Question getQuestionDTO(){
+  public Question _getQuestionDTO(){
     Question question = new Question();
     Set<Answer> listAnswer = new HashSet<>();
 
@@ -53,7 +53,7 @@ public class QuestionDAO {
     question.setDescription(this.description);
     question.setMultipleChoice(this.multipleChoice);
 
-    this.answers.stream().forEach(item -> listAnswer.add(item.getAnswerDTO()));
+    this.answers.stream().forEach(item -> listAnswer.add(item._getAnswerDTO()));
     question.setAnswers(listAnswer);
 
     return question;
