@@ -2,11 +2,13 @@ package br.com.surveyapp.surveyapp.dao.respondent;
 
 import br.com.surveyapp.surveyapp.dao.survey.SurveyDAO;
 import br.com.surveyapp.surveyapp.model.respondent.Respondent;
+import br.com.surveyapp.surveyapp.model.survey.Survey;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -20,7 +22,6 @@ public class RespondentDAO {
   private String name;
   private String document;
   private String email;
-
   private Set<SurveyDAO> surveysAnswered;
 
   public String getId() {
@@ -65,11 +66,15 @@ public class RespondentDAO {
 
   public Respondent _getRespondentDto(){
     Respondent respondent = new Respondent();
+    Set<Survey> surveys = new HashSet<>();
 
     respondent.setId(this.id);
     respondent.setName(this.name);
     respondent.setDocument(this.document);
     respondent.setEmail(this.email);
+
+    this.surveysAnswered.stream().forEach(item -> surveys.add(item._getSurveyDTO()));
+    respondent.setSurveysAnswered(surveys);
 
     return respondent;
   }
