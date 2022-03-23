@@ -32,7 +32,7 @@ public class AnswerDAO {
     this.checked = checked;
   }
 
-  public Answer getAnswerDTO(){
+  public Answer _getAnswerDTO(){
     Answer answer = new Answer();
     answer.setOption(this.option);
     answer.setDescription(this.description);

@@ -64,7 +64,7 @@ public class Survey {
     surveyDAO.setStatus(this.status);
     surveyDAO.setCoordinator(this.coordinator._getCoodinatorEntity());
 
-    this.questions.stream().forEach(item -> listQuestionDAO.add(item.getQuestionDAO()));
+    this.questions.stream().forEach(item -> listQuestionDAO.add(item._getQuestionDAO()));
 
     surveyDAO.setQuestions(listQuestionDAO);
     return surveyDAO;

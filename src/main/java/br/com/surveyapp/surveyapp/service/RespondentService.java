@@ -38,16 +38,4 @@ public class RespondentService {
 
     return list;
   }
-
-  private void validateAnswer(Set<Answer> answers) throws Exception {
-
-    List<Answer> filteredAnswer = answers.stream()
-      .filter(item -> item.isChecked() == true)
-      .collect(Collectors.toList());
-
-    if(filteredAnswer.size() != 1){
-      throw new Exception("The answer to the question should be an answer only");
-    }
-  }
-
 }

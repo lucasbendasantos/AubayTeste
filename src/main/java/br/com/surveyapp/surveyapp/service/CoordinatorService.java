@@ -4,6 +4,7 @@ import br.com.surveyapp.surveyapp.dao.coordinator.CoordinatorDAO;
 import br.com.surveyapp.surveyapp.model.coodinator.Coordinator;
 import br.com.surveyapp.surveyapp.repository.CoordinatorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +17,11 @@ public class CoordinatorService {
   private CoordinatorRepository repository;
 
   public Coordinator insert(Coordinator coordinator){
-    return repository.save(coordinator._getCoodinatorEntity())._getCoodinatorDTO();
+    try {
+      return repository.save(coordinator._getCoodinatorEntity())._getCoodinatorDTO();
+    }catch (DuplicateKeyException duplicateKeyException){
+      throw duplicateKeyException;
+    }
   }
 
   public Coordinator update (Coordinator coordinator){

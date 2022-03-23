@@ -45,7 +45,7 @@ public class Question {
     this.answers = answers;
   }
 
-  public QuestionDAO getQuestionDAO(){
+  public QuestionDAO _getQuestionDAO(){
     QuestionDAO questionDAO = new QuestionDAO();
     Set<AnswerDAO> listAnswerDAO = new HashSet<>();
 
@@ -53,7 +53,7 @@ public class Question {
     questionDAO.setDescription(this.description);
     questionDAO.setMultipleChoice(this.multipleChoice);
 
-    this.answers.stream().forEach(item -> listAnswerDAO.add(item.getAnswerDAO()));
+    this.answers.stream().forEach(item -> listAnswerDAO.add(item._getAnswerDAO()));
     questionDAO.setAnswers(listAnswerDAO);
 
     return questionDAO;
