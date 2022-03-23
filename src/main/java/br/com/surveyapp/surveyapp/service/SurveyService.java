@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class SurveyService {
@@ -27,6 +26,9 @@ public class SurveyService {
   public Survey insert(Survey survey) throws Exception {
 
     Coordinator coordinator = coordinatorService.findByDocument(survey.getCoordinator().getDocument());
+    if (coordinator == null) {
+      throw new Exception("No coordinator found with the document: " + survey.getCoordinator().getDocument());
+    }
     survey.setCoordinator(coordinator);
     validateSurvey(survey);
 
@@ -37,7 +39,7 @@ public class SurveyService {
     return repository.insert(survey._getSurveyDAO())._getSurveyDTO();
   }
 
-  public List<Survey> listAll(){
+  public List<Survey> listAll() {
     List<SurveyDAO> listDAO = repository.findAll();
     List<Survey> listDTO = new ArrayList<>();
 
@@ -46,13 +48,38 @@ public class SurveyService {
     return listDTO;
   }
 
+  public List<Survey> listByTitle(String title) {
+    List<SurveyDAO> listDAO = repository.findByTitle(title);
+    List<Survey> listDTO = new ArrayList<>();
+
+    listDAO.stream().forEach(item -> listDTO.add(item._getSurveyDTO()));
+    return listDTO;
+  }
+
+  public Survey changeStatusSurvey(String documentCoordinator, String idSurvey, char status) throws Exception {
+    Coordinator coordinator = coordinatorService.findByDocument(documentCoordinator);
+    if (coordinator == null) {
+      throw new Exception("No coordinator found with the document: " + documentCoordinator);
+    }
+
+    SurveyDAO surveyDao = repository.findById(idSurvey).get();
+
+    if (surveyDao == null) {
+      throw new Exception("no survey found with this id: " + idSurvey);
+    }
+
+    surveyDao.setStatus(status);
+    repository.save(surveyDao);
+    return repository.save(surveyDao)._getSurveyDTO();
+  }
+
   private void validateSurvey(Survey survey) throws Exception {
 
-    if(survey.getQuestions().size() < 1){
+    if (survey.getQuestions().size() < 1) {
       throw new Exception("The survey must have at least one question");
     }
 
-    if(survey.getQuestions().size() > 10){
+    if (survey.getQuestions().size() > 10) {
       throw new Exception("Limit of questions in a survey is 10");
     }
 
@@ -61,17 +88,17 @@ public class SurveyService {
   }
 
   private void validateQuestions(Set<Question> questions) throws Exception {
-    for (Question question : questions){
+    for (Question question : questions) {
 
-      if(question.getAnswers().size() < 1){
+      if (question.getAnswers().size() < 1) {
         throw new Exception("The question must have at least one answer");
       }
 
-      if(question.getAnswers().size() > 5){
+      if (question.getAnswers().size() > 5) {
         throw new Exception("The question must have a maximum of 5 alternatives");
       }
 
-      if(!question.isMultipleChoice()){
+      if (!question.isMultipleChoice()) {
         validateAnswer(question.getAnswers());
       }
     }
@@ -83,7 +110,7 @@ public class SurveyService {
       .filter(item -> item.isChecked() == true)
       .collect(Collectors.toList());
 
-    if(filteredAnswer.size() != 1){
+    if (filteredAnswer.size() != 1) {
       throw new Exception("The answer to the question should be an answer only");
     }
   }

@@ -3,6 +3,7 @@ package br.com.surveyapp.surveyapp.controller;
 import br.com.surveyapp.surveyapp.model.respondent.Respondent;
 import br.com.surveyapp.surveyapp.service.RespondentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,17 +17,22 @@ public class RespondentController {
   RespondentService service;
 
   @PostMapping
-  public ResponseEntity<Respondent> insert(@RequestBody Respondent respondent){
-    return ResponseEntity.ok(service.insert(respondent));
+  public ResponseEntity<?> insert(@RequestBody Respondent respondent) {
+    try {
+      return ResponseEntity.ok(service.insert(respondent));
+    } catch (
+      DuplicateKeyException duplicateKeyException) {
+      return ResponseEntity.unprocessableEntity().body("There is already a respondent registered with this document");
+    }
   }
 
   @GetMapping
-  public ResponseEntity<List<Respondent>> listAll(){
+  public ResponseEntity<List<Respondent>> listAll() {
     return ResponseEntity.ok(service.listAll());
   }
 
   @PutMapping
-  public ResponseEntity<Respondent> update(@RequestBody Respondent respondent){
+  public ResponseEntity<Respondent> update(@RequestBody Respondent respondent) {
     return ResponseEntity.ok(service.update(respondent));
   }
 }

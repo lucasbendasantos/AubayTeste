@@ -5,6 +5,7 @@ import br.com.surveyapp.surveyapp.model.respondent.Respondent;
 import br.com.surveyapp.surveyapp.model.survey.Answer;
 import br.com.surveyapp.surveyapp.repository.RespondentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +20,13 @@ public class RespondentService {
   private RespondentRepository repository;
 
   public Respondent insert(Respondent respondent) {
-    return repository.save(respondent._getRespodentEntity())._getRespondentDto();
+    try {
+      return repository.save(respondent._getRespodentEntity())._getRespondentDto();
+    } catch (
+      DuplicateKeyException duplicateKeyException) {
+      throw duplicateKeyException;
+    }
+
   }
 
   public Respondent update(Respondent respondent) {
@@ -30,7 +37,7 @@ public class RespondentService {
     return repository.findByDocument(document)._getRespondentDto();
   }
 
-  public List<Respondent> listAll(){
+  public List<Respondent> listAll() {
     List<RespondentDAO> listDAO = repository.findAll();
     List<Respondent> list = new ArrayList<>();
 

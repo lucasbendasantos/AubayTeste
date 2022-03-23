@@ -55,7 +55,7 @@ public class Respondent {
     this.surveysAnswered = surveysAnswered;
   }
 
-  public RespondentDAO _getRespodentEntity(){
+  public RespondentDAO _getRespodentEntity() {
     RespondentDAO respondentDAO = new RespondentDAO();
     Set<SurveyDAO> listSurveyDAO = new HashSet<>();
 
@@ -64,9 +64,10 @@ public class Respondent {
     respondentDAO.setDocument(this.getDocument());
     respondentDAO.setEmail(this.getEmail());
 
-    this.surveysAnswered.stream().forEach(item -> listSurveyDAO.add(item._getSurveyDAO()));
-    respondentDAO.setSurveysAnswered(listSurveyDAO);
-
+    if (this.surveysAnswered != null) {
+      this.surveysAnswered.stream().forEach(item -> listSurveyDAO.add(item._getSurveyDAO()));
+      respondentDAO.setSurveysAnswered(listSurveyDAO);
+    }
     return respondentDAO;
   }
 }
