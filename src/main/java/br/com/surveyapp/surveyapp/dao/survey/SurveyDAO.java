@@ -1,28 +1,34 @@
 package br.com.surveyapp.surveyapp.dao.survey;
 
-import br.com.surveyapp.surveyapp.dao.coordinators.CoordinatorDAO;
-import br.com.surveyapp.surveyapp.model.Question;
-import br.com.surveyapp.surveyapp.model.Survey;
+import br.com.surveyapp.surveyapp.dao.coordinator.CoordinatorDAO;
+import br.com.surveyapp.surveyapp.model.survey.Question;
+import br.com.surveyapp.surveyapp.model.survey.Survey;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@Document(collection = "survey")
 public class SurveyDAO {
 
   @Id
-  private int id;
+  @Field("_id")
+  private String id;
 
   private String title;
   private char status;
   private CoordinatorDAO coordinator;
   private Set<QuestionDAO> questions;
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

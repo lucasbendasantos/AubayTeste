@@ -1,19 +1,19 @@
-package br.com.surveyapp.surveyapp.model;
+package br.com.surveyapp.surveyapp.model.coodinator;
 
-import br.com.surveyapp.surveyapp.dao.coordinators.CoordinatorDAO;
+import br.com.surveyapp.surveyapp.dao.coordinator.CoordinatorDAO;
 
 public class Coordinator {
-  private int id;
+  private String id;
 
   private String name;
   private String document;
   private String email;
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

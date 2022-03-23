@@ -1,24 +1,25 @@
-package br.com.surveyapp.surveyapp.model;
+package br.com.surveyapp.surveyapp.model.survey;
 
 import br.com.surveyapp.surveyapp.dao.survey.QuestionDAO;
 import br.com.surveyapp.surveyapp.dao.survey.SurveyDAO;
+import br.com.surveyapp.surveyapp.model.coodinator.Coordinator;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Survey {
 
-  private int id;
+  private String id;
   private String title;
   private char status;
   private Coordinator coordinator;
   private Set<Question> questions;
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

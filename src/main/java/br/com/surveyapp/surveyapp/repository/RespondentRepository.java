@@ -1,6 +1,6 @@
 package br.com.surveyapp.surveyapp.repository;
 
-import br.com.surveyapp.surveyapp.dao.respondents.RespondentDAO;
+import br.com.surveyapp.surveyapp.dao.respondent.RespondentDAO;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,15 +1,21 @@
-package br.com.surveyapp.surveyapp.dao.respondents;
+package br.com.surveyapp.surveyapp.dao.respondent;
 
 import br.com.surveyapp.surveyapp.dao.survey.SurveyDAO;
-import br.com.surveyapp.surveyapp.model.Respondent;
+import br.com.surveyapp.surveyapp.model.respondent.Respondent;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Set;
 
+@Data
+@Document(collection = "respondent")
 public class RespondentDAO {
 
-  @Id()
-  private int id;
+  @Id
+  @Field("_id")
+  private String id;
 
   private String name;
   private String document;
@@ -17,11 +23,11 @@ public class RespondentDAO {
 
   private Set<SurveyDAO> surveysAnswered;
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

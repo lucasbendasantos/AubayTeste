@@ -1,21 +1,28 @@
-package br.com.surveyapp.surveyapp.dao.coordinators;
+package br.com.surveyapp.surveyapp.dao.coordinator;
 
-import br.com.surveyapp.surveyapp.model.Coordinator;
+import br.com.surveyapp.surveyapp.model.coodinator.Coordinator;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+@Data
+@Document(collection = "coordinator")
 public class CoordinatorDAO {
-  @Id()
-  private int id;
+
+  @Id
+  @Field("_id")
+  private String id;
 
   private String name;
   private String document;
   private String email;
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

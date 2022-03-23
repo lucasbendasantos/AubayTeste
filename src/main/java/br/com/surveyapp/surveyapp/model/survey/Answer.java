@@ -1,4 +1,4 @@
-package br.com.surveyapp.surveyapp.model;
+package br.com.surveyapp.surveyapp.model.survey;
 
 import br.com.surveyapp.surveyapp.dao.survey.AnswerDAO;
 

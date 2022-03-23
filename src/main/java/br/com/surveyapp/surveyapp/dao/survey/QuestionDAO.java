@@ -1,7 +1,7 @@
 package br.com.surveyapp.surveyapp.dao.survey;
 
-import br.com.surveyapp.surveyapp.model.Answer;
-import br.com.surveyapp.surveyapp.model.Question;
+import br.com.surveyapp.surveyapp.model.survey.Answer;
+import br.com.surveyapp.surveyapp.model.survey.Question;
 
 import java.util.HashSet;
 import java.util.Set;

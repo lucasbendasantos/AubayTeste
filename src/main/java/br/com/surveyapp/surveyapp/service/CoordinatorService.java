@@ -1,8 +1,9 @@
 package br.com.surveyapp.surveyapp.service;
 
-import br.com.surveyapp.surveyapp.dao.coordinators.CoordinatorDAO;
-import br.com.surveyapp.surveyapp.model.Coordinator;
+import br.com.surveyapp.surveyapp.dao.coordinator.CoordinatorDAO;
+import br.com.surveyapp.surveyapp.model.coodinator.Coordinator;
 import br.com.surveyapp.surveyapp.repository.CoordinatorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,10 +12,11 @@ import java.util.List;
 @Service
 public class CoordinatorService {
 
+  @Autowired
   private CoordinatorRepository repository;
 
   public Coordinator insert(Coordinator coordinator){
-    return repository.insert(coordinator.getCoodinatorEntity()).getCoodinatorDTO();
+    return repository.save(coordinator.getCoodinatorEntity()).getCoodinatorDTO();
   }
 
   public Coordinator update (Coordinator coordinator){

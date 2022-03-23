@@ -1,7 +1,7 @@
 package br.com.surveyapp.surveyapp.repository;
 
-import br.com.surveyapp.surveyapp.dao.coordinators.CoordinatorDAO;
-import br.com.surveyapp.surveyapp.model.Coordinator;
+import br.com.surveyapp.surveyapp.dao.coordinator.CoordinatorDAO;
+import br.com.surveyapp.surveyapp.model.coodinator.Coordinator;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
