@@ -1,17 +1,13 @@
 package br.com.surveyapp.surveyapp.dao.coordinator;
 
 import br.com.surveyapp.surveyapp.model.coodinator.Coordinator;
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-@Data
 @Document(collection = "coordinator")
 public class CoordinatorDAO {
 
   @Id
-  @Field("_id")
   private String id;
 
   private String name;

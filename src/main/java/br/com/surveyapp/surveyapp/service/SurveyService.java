@@ -6,6 +6,7 @@ import br.com.surveyapp.surveyapp.model.survey.Answer;
 import br.com.surveyapp.surveyapp.model.survey.Question;
 import br.com.surveyapp.surveyapp.model.survey.Survey;
 import br.com.surveyapp.surveyapp.repository.SurveyRepository;
+import br.com.surveyapp.surveyapp.utils.ValidateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class SurveyService {
       throw new Exception("No coordinator found with the document: " + survey.getCoordinator().getDocument());
     }
     survey.setCoordinator(coordinator);
-    validateSurvey(survey);
+    ValidateUtils.validateSurvey(survey);
 
     return repository.save(survey._getSurveyDAO())._getSurveyDTO();
   }
@@ -72,48 +73,5 @@ public class SurveyService {
     repository.save(surveyDao);
     return repository.save(surveyDao)._getSurveyDTO();
   }
-
-  private void validateSurvey(Survey survey) throws Exception {
-
-    if (survey.getQuestions().size() < 1) {
-      throw new Exception("The survey must have at least one question");
-    }
-
-    if (survey.getQuestions().size() > 10) {
-      throw new Exception("Limit of questions in a survey is 10");
-    }
-
-    validateQuestions(survey.getQuestions());
-
-  }
-
-  private void validateQuestions(Set<Question> questions) throws Exception {
-    for (Question question : questions) {
-
-      if (question.getAnswers().size() < 1) {
-        throw new Exception("The question must have at least one answer");
-      }
-
-      if (question.getAnswers().size() > 5) {
-        throw new Exception("The question must have a maximum of 5 alternatives");
-      }
-
-      if (!question.isMultipleChoice()) {
-        validateAnswer(question.getAnswers());
-      }
-    }
-  }
-
-  private void validateAnswer(Set<Answer> answers) throws Exception {
-
-    List<Answer> filteredAnswer = answers.stream()
-      .filter(item -> item.isChecked() == true)
-      .collect(Collectors.toList());
-
-    if (filteredAnswer.size() != 1) {
-      throw new Exception("The answer to the question should be an answer only");
-    }
-  }
-
 
 }
