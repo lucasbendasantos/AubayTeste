@@ -3,20 +3,16 @@ package br.com.surveyapp.surveyapp.dao.respondent;
 import br.com.surveyapp.surveyapp.dao.survey.SurveyDAO;
 import br.com.surveyapp.surveyapp.model.respondent.Respondent;
 import br.com.surveyapp.surveyapp.model.survey.Survey;
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Document(collection = "respondent")
 public class RespondentDAO {
 
   @Id
-  @Field("_id")
   private String id;
 
   private String name;
